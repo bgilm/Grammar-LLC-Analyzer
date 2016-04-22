@@ -1,11 +1,12 @@
-
 public class Nodo {
 	private String cadena;
 	
 	private Nodo anterior;
-	public Nodo(String cadena, Nodo anterior) {	
+	private String produccionUsada;
+	public Nodo(String cadena, Nodo anterior,String produccionUsada) {	
 		this.cadena = cadena;
 		this.anterior = anterior;
+		this.produccionUsada=produccionUsada;
 	}
 	
 	
@@ -23,7 +24,23 @@ public class Nodo {
 	}
 
 	public String toString() {
-		return "Nodo [cadena=" + cadena + ", anterior=" + anterior + "]";
+		if(this.anterior==null){
+			return cadena;
+		}
+		if(cadena.equals("")){
+			return  anterior + "=>" +"λ";
+		}
+		return   anterior + "=>" + cadena + " produccion usada "+ produccionUsada +" ";
 	}
-	
+
+
+	public String getProduccionUsada() {
+		return produccionUsada;
+	}
+
+
+	public void setProduccionUsada(String produccionUsada) {
+		this.produccionUsada = produccionUsada;
+	}
 }
+	

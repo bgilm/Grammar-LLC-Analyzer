@@ -25,9 +25,15 @@ public class Regla {
 	}
 	@Override
 	public String toString() {
-		return "Regla [simbolo=" + simbolo + ", producciones=" + producciones
-				+ "]";
+		String stringProducciones="";
+		for(int i=0;i<producciones.size();i++){
+			if(i!=producciones.size()-1){
+				stringProducciones=stringProducciones+producciones.get(i)+"|";
+			}else{
+				stringProducciones=stringProducciones+producciones.get(i);
+			}
+		}
+		return simbolo + "->" + stringProducciones;
 	}
-	
 	
 }

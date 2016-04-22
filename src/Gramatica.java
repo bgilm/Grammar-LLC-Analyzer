@@ -30,8 +30,13 @@ public class Gramatica {
 	}
 	@Override
 	public String toString() {
-		return "Gramatica [alfabeto=" + alfabeto + ", reglas=" + reglas
-				+ ", simboloInicial=" + simboloInicial + "]";
+		String stringReglas="";
+		for(Regla str:reglas){
+			stringReglas=stringReglas+str+"\n";
+			
+		}
+		return "Gramática\nAlfabeto: " + alfabeto + "\nReglas:\n" + stringReglas
+				+ "SimboloInicial: " + simboloInicial ;
 	}
 	
 	
