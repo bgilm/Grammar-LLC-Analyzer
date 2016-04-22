@@ -11,7 +11,7 @@ public class Procesamiento {
 	public boolean aceptaCadena(){
 		boolean aceptado=false;
 		boolean flag=true;
-		Stack<String> pila = new Stack<String>();
+
 		ArrayList<Regla> reglas=gramatica.getReglas();
 		cola.add(new Nodo(gramatica.getSimboloInicial(),null,gramatica.getSimboloInicial()));
 		while(flag){
@@ -21,11 +21,11 @@ public class Procesamiento {
 				aceptado=true;
 				flag=false;
 				System.out.println(n);
-				
+
 				automataPila(n);
 				break;
 			}
-			
+
 			int longitud=res.length();
 			for(int i=0;i<longitud;i++){
 				String antes="";
@@ -51,8 +51,8 @@ public class Procesamiento {
 						}else{
 							if(antes.equals(cadena.substring(0,antes.length()))){
 								cola.add(new Nodo(cadenaRes,n,producciones.get(j)));
-								
-								
+
+
 							}
 						}
 					}
@@ -70,41 +70,41 @@ public class Procesamiento {
 		String cadenaAux=cadena;
 		Stack<String> pila = new Stack<String>();
 		Stack<String> resultado = new Stack<String>();
-		
+
 		Nodo aux=n;
 		while(aux!=null){
 			pila.push(aux.getProduccionUsada());
-			
+
 			aux=aux.getAnterior();
 		}
 		pila.push("Z");
 		//System.out.println(pila);
-		
+
 		//Set<String> mySet = new HashSet<String>(Arrays.asList(pila.pop().split("")));
 		resultado.push(pila.pop());
 		System.out.println("<q0,"+cadenaAux+","+resultado+">");
 		resultado.push(pila.pop());
 		System.out.println("<q1,"+cadenaAux+","+resultado+">");
-		
+
 		while(!resultado.peek().equals("Z")){
 			if(gramatica.getAlfabeto().contains(resultado.peek())){
 				resultado.pop();
 				cadenaAux=cadenaAux.substring(1, cadenaAux.length());
 				System.out.println("<q1,"+cadenaAux+","+resultado+">");
-				
+
 			}else{
-				
+
 				resultado.pop();
-				
+
 				ArrayList<String>reversed=reverse(pila.pop().split(""));
-				
-				
-//				List<String> list = new ArrayList<String>(mySet);
-//				System.out.println(list);
-//				Collections.sort(list, Collections.reverseOrder());
-//				System.out.println(list);
+
+
+				//				List<String> list = new ArrayList<String>(mySet);
+				//				System.out.println(list);
+				//				Collections.sort(list, Collections.reverseOrder());
+				//				System.out.println(list);
 				resultado.addAll(reversed);
-				
+
 				System.out.println("<q1,"+cadenaAux+","+resultado+">");
 			}
 		}
@@ -113,10 +113,10 @@ public class Procesamiento {
 	public ArrayList<String> reverse (String[]arr){
 		ArrayList<String>res= new ArrayList<String>();
 		for(int i=arr.length-1;i>-1;i--){
-			
+
 			res.add(arr[i]);
 		}
-		
+
 		return res;
 	}
 
