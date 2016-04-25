@@ -1,9 +1,28 @@
 import java.io.*;
 import java.util.*;
-
+/***
+ * En esta clase se comprueba si una cadena es aceptada por una gramática.
+ *@author  Benjamín Gil Mendoza
+ * @author 	Carla Lorena Flores Subias
+ * @version 1.0
+ * @since 2016-03-25
+ */
 public class Principal{
+	/**
+	 * En el main se lee un archivo y se extraen los componentes de una gramática 
+	 * para ingresarlos en un objeto de la clase Gramática. Posteriormente se recibe 
+	 * la cadena a comparar y se envia a la clase procesamiento para comprobar si es 
+	 * aceptada o no. Finalmente se muestra el resultado y se pregunta al usuario qué
+	 * desea hacer. El proceso se repite mientras el usuario desee ingresar otra cadena
+	 * o bien desee ingresar otra gramática.  
+	 * @param args argumentos del método main
+	 * @throws FileNotFoundException en caso de no encontrarse el archivo especificado.
+	 * 			Si esto sucede, se muestra un mensaje de "archivo no encontrado" y se 
+	 * 			le pide al usuario que ingrese otro nombre de archivo.
+	 * @throws IOException en caso de suscitarse un error en la lectura del archivo. 
+	 * @throws NumberFormatException en case de que la opción ingresada en el menú no sea un número. 
+	 */
 	public static void main(String[] args){
-
 		Scanner s= new Scanner(System.in);
 		boolean otraGramatica=true;        
 		boolean otraCadena=true;
@@ -16,7 +35,6 @@ public class Principal{
 			File archivo = new File(nombreArchivo);
 
 			try {
-
 				BufferedReader buff = new BufferedReader(new FileReader(archivo));
 				String[] aux=null;
 				ArrayList<Regla> reglas=new ArrayList<Regla>();
@@ -60,12 +78,7 @@ public class Principal{
 					}
 					if(aceptado){
 						Procesamiento p=new Procesamiento(g,cadena);
-						aceptado=p.aceptaCadena();
-						if(aceptado){
-							System.out.println("La cadena es aceptada");
-						}else{
-							System.out.println("La cadena no es aceptada");
-						}
+						System.out.println(p.aceptaCadena());
 					}else{
 						System.out.println("Los simbolos de la cadena no están en el alfabeto, la cadena no es aceptada");
 					}
